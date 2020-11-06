@@ -13,6 +13,9 @@ To enforce SSL on the server, a new *parameter group* was created and assigned w
 - Download the Postgres JDBC driver, and copy it to the <DPAgent_root>/camel/lib directory. In this example, 
 we downloaded the latest version available for JDBC 4.2 (42.2.18) at https://jdbc.postgresql.org/download.html
 - Allow the JAR file to be executed: chmod u=rx postgresql-42.2.18.jar
+- Deploy the CamelJDBC adapter 
+-	<DPAgent_root>/bin/agentcli.sh --configAgent
+-	Register Adapter > CamelJdbcAdapter
 
 ## Create Remote Source on HANA
 - Replace <AGENT_NAME>, <HOST_NAME>, <PORT>, <DATABASE_NAME>, <USER_NAME>, <PASS_WORD>
