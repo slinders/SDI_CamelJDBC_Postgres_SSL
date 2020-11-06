@@ -4,7 +4,8 @@ Instructions to install SDI CamelJDBC adapter for Postgres with SSL support
 [SAP Help page on Apache Camel JDBC](https://help.sap.com/viewer/7952ef28a6914997abc01745fef1b607/2.0_SPS05/en-US/598cdd48941a41128751892fe68393f4.html)
 
 ## Postgres database configuration
-This example was tested on AWS RDS Postgres version 9.5.2, instance class db.t2.medium
+This example was tested on AWS RDS Postgres version 9.5.2, instance class db.t2.medium. 
+
 To enforce SSL on the server, a new *parameter group* was created and assigned with parameter rds.force_ssl=1, then rebooted
 
 ## Enable Camel JDBC Adapter on Data Provisioning Agent
@@ -18,8 +19,8 @@ we downloaded the latest version available for JDBC 4.2 (42.2.18) at https://jdb
 - In the URL tag, the SSL setting is set to sslmode=require. Change this to another mode if needed. The different modes are described [here](https://jdbc.postgresql.org/documentation/head/ssl-client.html)
 
 ```
---DROP REMOTE SOURCE "POSTGRES_CAMEL";
-CREATE REMOTE SOURCE "POSTGRES_CAMEL" 
+--DROP REMOTE SOURCE "RS_POSTGRES_CAMEL";
+CREATE REMOTE SOURCE "RS_POSTGRES_CAMEL" 
 	ADAPTER "CamelJdbcAdapter" AT LOCATION AGENT "<AGENT_NAME>"
 		CONFIGURATION '<?xml version="1.0" encoding="UTF-8"?>
 <ConnectionProperties name="configuration">
@@ -57,6 +58,6 @@ INSERT INTO public.t1 VALUES (0, 'This is a test');
 Create a virtual table in HANA and query it
 ```
 --DROP TABLE "DBADMIN"."V_T1";
-CREATE VIRTUAL TABLE "DBADMIN"."V_T1" at "POSTGRES_CAMEL"."<NULL>"."<NULL>"."public.t1";
+CREATE VIRTUAL TABLE "DBADMIN"."V_T1" at "RS_POSTGRES_CAMEL"."<NULL>"."<NULL>"."public.t1";
 SELECT * FROM "DBADMIN"."V_T1";
 ```
