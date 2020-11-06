@@ -152,6 +152,7 @@ Register the adapter either through the DP Agent client, or using the following 
 CREATE ADAPTER "CamelJdbcPostgresAdapter" AT LOCATION AGENT "<AGENT_NAME>";
 
 ## Create Remote Source on HANA
+- Use the remote source UI (but then make sure to add the SSL entry to the JDBC string) or the below SQL statement
 - Replace <AGENT_NAME>, <HOST_NAME>, <PORT>, <DATABASE_NAME>, <USER_NAME>, <PASS_WORD>
 - In the URL tag, the SSL setting is set to sslmode=require. Change this to another mode if needed. The different modes are described [here](https://jdbc.postgresql.org/documentation/head/ssl-client.html)
 
