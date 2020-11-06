@@ -17,7 +17,8 @@ we downloaded the latest version available for JDBC 4.2 (42.2.18) at https://jdb
 - Replace <AGENT_NAME>, <HOST_NAME>, <PORT>, <DATABASE_NAME>, <USER_NAME>, <PASS_WORD>
 - In the URL tag, the SSL setting is set to sslmode=require. Change this to another mode if needed. The different modes are described [here](https://jdbc.postgresql.org/documentation/head/ssl-client.html)
 
-DROP REMOTE SOURCE "POSTGRES_CAMEL";
+```
+--DROP REMOTE SOURCE "POSTGRES_CAMEL";
 CREATE REMOTE SOURCE "POSTGRES_CAMEL" 
 	ADAPTER "CamelJdbcAdapter" AT LOCATION AGENT "<AGENT_NAME>"
 		CONFIGURATION '<?xml version="1.0" encoding="UTF-8"?>
@@ -40,18 +41,22 @@ CREATE REMOTE SOURCE "POSTGRES_CAMEL"
 WITH CREDENTIAL TYPE 'PASSWORD'
 USING '<CredentialEntry name="db_credential"><user><USER_NAME></user>
 <password><PASS_WORD></password></CredentialEntry>';
+```
 
 ## Test replication
 Create a table in Postgres
+```
 --DROP TABLE public.t1;
 CREATE TABLE public.t1 (
 	id int4 NULL,
 	"name" varchar(64) NULL
 );
 INSERT INTO public.t1 VALUES (0, 'This is a test');
+```
 
 Create a virtual table in HANA and query it
+```
 --DROP TABLE "DBADMIN"."V_T1";
 CREATE VIRTUAL TABLE "DBADMIN"."V_T1" at "POSTGRES_CAMEL"."<NULL>"."<NULL>"."public.t1";
 SELECT * FROM "DBADMIN"."V_T1";
-
+```
