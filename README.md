@@ -182,7 +182,8 @@ Create a table in Postgres
 --DROP TABLE public.t1;
 CREATE TABLE public.t1 (
 	id int4 NULL,
-	"name" varchar(64) NULL
+	"name" varchar(64) NULL,
+	primary key (id)
 );
 INSERT INTO public.t1 VALUES (0, 'This is a test');
 ```
