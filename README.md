@@ -94,7 +94,7 @@ To enforce SSL on the server, a new *parameter group* was created and assigned w
             CAP_NONEQUAL_COMPARISON,
             CAP_OR_DIFFERENT_COLUMNS,
             CAP_PROJECT,
-            CAP_BI_SECOND,,
+            CAP_BI_SECOND,
             CAP_BI_MINUTE,
             CAP_BI_HOUR,
 			CAP_BI_MONTH,
